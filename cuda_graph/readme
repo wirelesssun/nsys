@@ -1,0 +1,50 @@
+在这个示例中，我将展示如何使用 CUDA Graph 的“显式 API”模式来构建一个具有严格先后依赖关系的任务链（幂次计算）。
+为了展示效率提升，通常这种模式用于循环启动。我们在实例化图之后，在循环中反复调用 cudaGraphLaunch，
+这样可以省去每次启动内核时 CPU 端复杂的驱动校验和下发开销。
+CUDA Graphs 幂次链式计算 (power_chain.cu)
+
+核心原理解析
+ * cudaGraphCreate 与节点构建：
+   * 我们不仅创建了任务，还通过 cudaGraphAddKernelNode 的第三和第四个参数（依赖列表）明确告诉 GPU：任务2必须等任务1完成，任务3必须等任务2完成。
+   * 这种显式的依赖关系允许 CUDA 驱动在底层进行流水线优化。
+ * cudaGraphInstantiate (性能关键)：
+   * 这是最耗时的步骤，但它只执行一次。它会验证参数、分配 GPU 资源并生成一个“静态指令序列”。
+ * cudaGraphLaunch (效率体现)：
+   * 相比传统的流提交（每个内核都要经过 Host -> Driver -> GPU 的往返），cudaGraphLaunch 仅仅是一个单一的 CPU 指令，告诉 GPU：“按照我之前给你的那个完整计划开始执行”。
+   * 对于包含成百上千个小内核的工作流，这种方式能消除 90% 以上的 CPU 提交开销。
+如何运行
+ * 保存为 power_chain.cu。
+ * 执行命令：
+   nvcc -O3 power_chain.cu -o power_chain
+./power_chain
+
+你想看看如果内核数量非常多（例如 1000 个小计算任务）时，CUDA Graphs 与普通 Stream 提交在耗时上的直观对比。吗？
+
+ubuntu@VM-0-16-ubuntu:~/sunlibo/gtest$ nvidia-smi    
+Wed Feb 11 23:29:05 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 570.158.01             Driver Version: 570.158.01     CUDA Version: 12.8     |
+|-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  Tesla T4                       On  |   00000000:00:08.0 Off |                  Off |
+| N/A   35C    P8             11W /   70W |       0MiB /  16384MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+                                                                                         
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+ubuntu@VM-0-16-ubuntu:~/sunlibo/gtest$ nvcc --version
+nvcc: NVIDIA (R) Cuda compiler driver
+Copyright (c) 2005-2021 NVIDIA Corporation
+Built on Thu_Nov_18_09:45:30_PST_2021
+Cuda compilation tools, release 11.5, V11.5.119
+Build cuda_11.5.r11.5/compiler.30672275_0
+ubuntu@VM-0-16-ubuntu:~/sunlibo/gtest$     
