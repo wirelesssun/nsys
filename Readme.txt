@@ -132,3 +132,72 @@ sudo cp lib/*.a /usr/lib
 执行完上述步骤之后，你可以运行这个命令：
 Bash
 ls /usr/lib/libgtest.a
+
+要生成一份能够供 Windows GUI 进行深度分析的、具有系统性、完备性的报告，你需要使用 nsys profile 命令并开启全部核心追踪标志。
+
+以下是推荐的命令及其详细参数说明：
+
+1. 推荐的收集命令
+在 Ubuntu 终端执行：
+
+Bash
+nsys profile \
+    --trace=cuda,cudnn,cublas,osrt,nvtx,openacc \
+    --sample=cpu \
+    --cpuctxsw=none \
+    --backtrace=fp \
+    --force-overwrite=true \
+    --output=matrix_add_report \
+    --export=sqlite \
+    ./test
+2. 参数深度解析（为何这样配置最完备）
+为了保证 Windows 端能看到最详细的瀑布图和性能瓶颈，参数选择如下：
+
+--trace=cuda,osrt,nvtx:
+
+cuda: 记录所有核函数（Kernel）的执行耗时、显存拷贝（HtoD/DtoH）。
+
+osrt: (Operating System Runtime) 记录系统级调用（如内存分配、线程同步），这对于发现 CPU 阻塞 非常关键。
+
+nvtx: 如果你在代码中加入了 NVTX 标记（用于标记代码段名称），此选项可以让你在 GUI 看到自定义的时间区间。
+
+--sample=cpu: 定期对 CPU 进行采样，让你在 GUI 视图中看到 CPU 每一时刻都在干什么（函数的火焰图）。
+
+--backtrace=fp: 记录调用栈。当你在 GUI 中点击一个 CUDA API 时，它能准确告诉你这个调用是从你 C++ 代码的哪一行发出的。
+
+--output=matrix_add_report: 指定生成文件的名称。
+
+--export=sqlite: 除了生成 .nsys-rep 原始文件外，额外生成一个 SQLite 数据库。这保证了数据的通用性，方便某些高级分析工具读取。
+
+--force-overwrite=true: 多次实验时自动覆盖同名文件，避免因文件已存在导致收集失败。
+
+3. 如何在 Windows 上查看
+找到文件：命令执行完成后，你会发现在当前目录下生成了一个 matrix_add_report.nsys-rep 文件。
+
+传输文件：使用 scp、WinSCP 或 Xshell 的文件传输功能，将该文件下载到你的 Windows 电脑上。
+
+打开分析：
+
+启动 Windows 上的 NVIDIA Nsight Systems 客户端。
+
+点击 File -> Open，选择该 .nsys-rep 文件。
+
+你将看到完整的 Timeline（时间轴）视图，包括 CUDA HW (Kernel 运行进度)、CUDA API 调用时间 以及 CPU 线程负载。
+
+4. 专家级提示：如何获取更“具体”的数据？
+如果你的程序运行时间很长，但你只想分析“矩阵加法”那几毫秒，你可以通过代码控制：
+
+在 main.cu 中加入：
+
+C++
+#include <cuda_profiler_api.h>
+// 在你想开始分析的地方
+cudaProfilerStart();
+// 运行你的矩阵加法
+// ...
+cudaProfilerStop();
+在命令中加入 -c cudaProfilerApi：
+
+Bash
+nsys profile -c cudaProfilerApi ./test
+这样收集到的数据库将只包含这两行代码之间发生的硬件事件，文件更小，分析更精准。
