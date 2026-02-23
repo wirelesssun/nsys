@@ -142,14 +142,15 @@ ls /usr/lib/libgtest.a
 
 Bash
 nsys profile \
-    --trace=cuda,cudnn,cublas,osrt,nvtx,openacc \
-    --sample=cpu \
-    --cpuctxsw=none \
-    --backtrace=fp \
-    --force-overwrite=true \
-    --output=matrix_add_report \
-    --export=sqlite \
-    ./test
+--trace=cuda,cudnn,cublas,osrt,nvtx,openacc \
+--sample=cpu \
+--cpuctxsw=none \
+--backtrace=fp \
+--force-overwrite=true \
+--output=matrix_add_report \
+--export=sqlite \
+./matrix_app
+
 2. 参数深度解析（为何这样配置最完备）
 为了保证 Windows 端能看到最详细的瀑布图和性能瓶颈，参数选择如下：
 
@@ -201,3 +202,27 @@ cudaProfilerStop();
 Bash
 nsys profile -c cudaProfilerApi ./test
 这样收集到的数据库将只包含这两行代码之间发生的硬件事件，文件更小，分析更精准。
+
+Generated:
+    /home/ubuntu/sunlibo/nsys/STEP-1/cuda_matrix_add/build/matrix_add_report.nsys-rep
+    /home/ubuntu/sunlibo/nsys/STEP-1/cuda_matrix_add/build/matrix_add_report.sqlite
+
+以下是这两个文件的详细分工，帮助你决定如何处理它们：
+
+1. .nsys-rep (核心报告文件) —— 必须传输
+用途：这是 Nsight Systems 的标准工程格式。
+
+GUI 兼容性：当你双击或在 Windows GUI 中点击 File -> Open 时，软件读取的就是这个文件。
+
+内容：它包含了所有的 Timeline（时间轴）、采样数据、CUDA 核函数执行序列、CPU 调度等原始分析数据。
+
+结论：如果你只是想在 Windows 上看图形化分析图表，只下载这一个文件就够了。
+
+2. .sqlite (数据库文件) —— 可选（进阶使用）
+用途：这是将分析数据结构化后的数据库。
+
+GUI 兼容性：Windows 的 GUI 软件不直接读取这个文件来生成时间轴图表。
+
+内容：它是为了方便开发者使用 SQL 语句进行“离线分析”或“自动化脚本处理”。例如，你想用 Python 脚本统计“所有 Kernel 的平均执行时间”，直接查这个数据库比解析原始文件快得多。
+
+结论：除非你打算写脚本提取数据，或者进行超大规模的量化对比，否则不需要把它下载到 Windows。
