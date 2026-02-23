@@ -106,3 +106,24 @@ g++ (Ubuntu 11.4.0-1ubuntu1~22.04.2) 11.4.0
 Copyright (C) 2021 Free Software Foundation, Inc.
 This is free software; see the source for copying conditions.  There is NO
 warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+第一步：下载 Google Test 源码
+先确保系统中已经有了 Google Test 的源代码包：
+
+Bash
+sudo apt update
+sudo apt install libgtest-dev
+第二步：编译并安装（关键一步）
+正如我之前提到的，Ubuntu 的 apt 只给源码，不给编译好的 .a 静态库。你需要手动编译它：
+
+Bash
+# 1. 进入源码目录
+cd /usr/src/gtest
+
+# 2. 编译源码 (使用 sudo 因为这是系统目录)
+sudo mkdir -p build && cd build
+sudo cmake ..
+sudo make
+
+# 3. 将生成的库文件拷贝到系统库搜索路径
+sudo cp lib/*.a /usr/lib
