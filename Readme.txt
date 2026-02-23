@@ -132,3 +132,160 @@ sudo cp lib/*.a /usr/lib
 执行完上述步骤之后，你可以运行这个命令：
 Bash
 ls /usr/lib/libgtest.a
+
+要生成一份能够供 Windows GUI 进行深度分析的、具有系统性、完备性的报告，你需要使用 nsys profile 命令并开启全部核心追踪标志。
+
+以下是推荐的命令及其详细参数说明：
+
+1. 推荐的收集命令
+在 Ubuntu 终端执行：
+
+Bash
+nsys profile \
+--trace=cuda,cudnn,cublas,osrt,nvtx,openacc \
+--sample=cpu \
+--cpuctxsw=none \
+--backtrace=fp \
+--force-overwrite=true \
+--output=matrix_add_report \
+--export=sqlite \
+./matrix_app
+
+2. 参数深度解析（为何这样配置最完备）
+为了保证 Windows 端能看到最详细的瀑布图和性能瓶颈，参数选择如下：
+
+--trace=cuda,osrt,nvtx:
+
+cuda: 记录所有核函数（Kernel）的执行耗时、显存拷贝（HtoD/DtoH）。
+
+osrt: (Operating System Runtime) 记录系统级调用（如内存分配、线程同步），这对于发现 CPU 阻塞 非常关键。
+
+nvtx: 如果你在代码中加入了 NVTX 标记（用于标记代码段名称），此选项可以让你在 GUI 看到自定义的时间区间。
+
+--sample=cpu: 定期对 CPU 进行采样，让你在 GUI 视图中看到 CPU 每一时刻都在干什么（函数的火焰图）。
+
+--backtrace=fp: 记录调用栈。当你在 GUI 中点击一个 CUDA API 时，它能准确告诉你这个调用是从你 C++ 代码的哪一行发出的。
+
+--output=matrix_add_report: 指定生成文件的名称。
+
+--export=sqlite: 除了生成 .nsys-rep 原始文件外，额外生成一个 SQLite 数据库。这保证了数据的通用性，方便某些高级分析工具读取。
+
+--force-overwrite=true: 多次实验时自动覆盖同名文件，避免因文件已存在导致收集失败。
+
+3. 如何在 Windows 上查看
+找到文件：命令执行完成后，你会发现在当前目录下生成了一个 matrix_add_report.nsys-rep 文件。
+
+传输文件：使用 scp、WinSCP 或 Xshell 的文件传输功能，将该文件下载到你的 Windows 电脑上。
+
+打开分析：
+
+启动 Windows 上的 NVIDIA Nsight Systems 客户端。
+
+点击 File -> Open，选择该 .nsys-rep 文件。
+
+你将看到完整的 Timeline（时间轴）视图，包括 CUDA HW (Kernel 运行进度)、CUDA API 调用时间 以及 CPU 线程负载。
+
+4. 专家级提示：如何获取更“具体”的数据？
+如果你的程序运行时间很长，但你只想分析“矩阵加法”那几毫秒，你可以通过代码控制：
+
+在 main.cu 中加入：
+
+C++
+#include <cuda_profiler_api.h>
+// 在你想开始分析的地方
+cudaProfilerStart();
+// 运行你的矩阵加法
+// ...
+cudaProfilerStop();
+在命令中加入 -c cudaProfilerApi：
+
+Bash
+nsys profile -c cudaProfilerApi ./test
+这样收集到的数据库将只包含这两行代码之间发生的硬件事件，文件更小，分析更精准。
+
+Generated:
+    /home/ubuntu/sunlibo/nsys/STEP-1/cuda_matrix_add/build/matrix_add_report.nsys-rep
+    /home/ubuntu/sunlibo/nsys/STEP-1/cuda_matrix_add/build/matrix_add_report.sqlite
+
+以下是这两个文件的详细分工，帮助你决定如何处理它们：
+
+1. .nsys-rep (核心报告文件) —— 必须传输
+用途：这是 Nsight Systems 的标准工程格式。
+
+GUI 兼容性：当你双击或在 Windows GUI 中点击 File -> Open 时，软件读取的就是这个文件。
+
+内容：它包含了所有的 Timeline（时间轴）、采样数据、CUDA 核函数执行序列、CPU 调度等原始分析数据。
+
+结论：如果你只是想在 Windows 上看图形化分析图表，只下载这一个文件就够了。
+
+2. .sqlite (数据库文件) —— 可选（进阶使用）
+用途：这是将分析数据结构化后的数据库。
+
+GUI 兼容性：Windows 的 GUI 软件不直接读取这个文件来生成时间轴图表。
+
+内容：它是为了方便开发者使用 SQL 语句进行“离线分析”或“自动化脚本处理”。例如，你想用 Python 脚本统计“所有 Kernel 的平均执行时间”，直接查这个数据库比解析原始文件快得多。
+
+结论：除非你打算写脚本提取数据，或者进行超大规模的量化对比，否则不需要把它下载到 Windows。
+
+如何在Windows操作系统NVIDIA Nsight Systems（带GUI）查看 ： 
+1. GPU Kernel运行所耗费的总时间；
+2. Host TO Device DMA所耗费的总时间；
+3. Device TO Host DMA所耗费的总时间；
+
+在 NVIDIA Nsight Systems (GUI) 中，要查看这些指标，最科学的方法不是在时间轴上用眼睛看，而是利用它内置的**统计报表（Analysis Summary）**功能。
+
+以下是获取这三个精确数值的操作步骤：
+
+第一步：切换到“统计汇总”视图
+打开 .nsys-rep 文件后，在底部面板找到 "Analysis Summary"（分析汇总）选项卡。
+
+在左侧的下拉列表中，找到并选择 "CUDA GPU Kernel Summary" 或 "CUDA Memory Operation Summary"。
+
+第二步：查找具体指标
+1. 查看 GPU Kernel 运行总时间
+报表名称：CUDA GPU Kernel Summary
+
+查看位置：
+
+找到你的 Kernel 名称（例如 matrixAddKernel）。
+
+Total Time 列：这就是该 Kernel 所有实例运行的总时间。
+
+Instances 列：该 Kernel 被调用的次数。
+
+Avg / Max / Min：单次调用的平均、最大、最小耗时。
+
+2. 查看 Host TO Device (H2D) DMA 总时间
+报表名称：CUDA Memory Operation Summary（或 Memcpy Summary）
+
+查看位置：
+
+在表格中找到 Operation 为 [CUDA memcpy HtoD] 的行。
+
+Total Time 列：对应的值即为所有数据从主机（CPU）拷贝到设备（GPU）的总耗时。
+
+3. 查看 Device TO Host (D2H) DMA 总时间
+报表名称：同上，CUDA Memory Operation Summary
+
+查看位置：
+
+在表格中找到 Operation 为 [CUDA memcpy DtoH] 的行。
+
+Total Time 列：对应的值即为所有结果从设备返回主机的总耗时。
+
+第三步：在时间轴（Timeline）上直观确认
+如果你想看它们在什么时候发生的，可以观察中间的 Timeline 视图：
+
+CUDA 硬件行 (CUDA HW)：展开后会看到一栏叫 Kernels，蓝色的小方块就是 Kernel 执行时间。
+
+内存行 (Memcpy)：展开后会有 Memory 栏，通常分为 HtoD（绿色）和 DtoH（紫色）。
+
+技巧：将鼠标悬停在这些小色块上，会自动弹出 Tooltip，显示 Duration（持续时间）。
+
+💡 性能分析进阶提示
+在你的矩阵加法程序中，你通常会发现：
+
+DMA (H2D/DtoH) 的时间往往远大于 Kernel 执行时间。 * 启示：这是 CUDA 编程中最经典的“IO 瓶颈”。
+如果你的计算量太小（比如矩阵规模 N 只有 1024），数据的搬运开销会完全掩盖 GPU 的计算优势。
+
+你想知道如何通过增加矩阵规模或使用异步流（Streams）来优化这些拷贝时间吗？
