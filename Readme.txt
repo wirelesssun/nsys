@@ -127,3 +127,8 @@ sudo make
 
 # 3. 将生成的库文件拷贝到系统库搜索路径
 sudo cp lib/*.a /usr/lib
+
+# 4. 验证是否成功的方法
+执行完上述步骤之后，你可以运行这个命令：
+Bash
+ls /usr/lib/libgtest.a
