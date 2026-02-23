@@ -226,3 +226,66 @@ GUI 兼容性：Windows 的 GUI 软件不直接读取这个文件来生成时间
 内容：它是为了方便开发者使用 SQL 语句进行“离线分析”或“自动化脚本处理”。例如，你想用 Python 脚本统计“所有 Kernel 的平均执行时间”，直接查这个数据库比解析原始文件快得多。
 
 结论：除非你打算写脚本提取数据，或者进行超大规模的量化对比，否则不需要把它下载到 Windows。
+
+如何在Windows操作系统NVIDIA Nsight Systems（带GUI）查看 ： 
+1. GPU Kernel运行所耗费的总时间；
+2. Host TO Device DMA所耗费的总时间；
+3. Device TO Host DMA所耗费的总时间；
+
+在 NVIDIA Nsight Systems (GUI) 中，要查看这些指标，最科学的方法不是在时间轴上用眼睛看，而是利用它内置的**统计报表（Analysis Summary）**功能。
+
+以下是获取这三个精确数值的操作步骤：
+
+第一步：切换到“统计汇总”视图
+打开 .nsys-rep 文件后，在底部面板找到 "Analysis Summary"（分析汇总）选项卡。
+
+在左侧的下拉列表中，找到并选择 "CUDA GPU Kernel Summary" 或 "CUDA Memory Operation Summary"。
+
+第二步：查找具体指标
+1. 查看 GPU Kernel 运行总时间
+报表名称：CUDA GPU Kernel Summary
+
+查看位置：
+
+找到你的 Kernel 名称（例如 matrixAddKernel）。
+
+Total Time 列：这就是该 Kernel 所有实例运行的总时间。
+
+Instances 列：该 Kernel 被调用的次数。
+
+Avg / Max / Min：单次调用的平均、最大、最小耗时。
+
+2. 查看 Host TO Device (H2D) DMA 总时间
+报表名称：CUDA Memory Operation Summary（或 Memcpy Summary）
+
+查看位置：
+
+在表格中找到 Operation 为 [CUDA memcpy HtoD] 的行。
+
+Total Time 列：对应的值即为所有数据从主机（CPU）拷贝到设备（GPU）的总耗时。
+
+3. 查看 Device TO Host (D2H) DMA 总时间
+报表名称：同上，CUDA Memory Operation Summary
+
+查看位置：
+
+在表格中找到 Operation 为 [CUDA memcpy DtoH] 的行。
+
+Total Time 列：对应的值即为所有结果从设备返回主机的总耗时。
+
+第三步：在时间轴（Timeline）上直观确认
+如果你想看它们在什么时候发生的，可以观察中间的 Timeline 视图：
+
+CUDA 硬件行 (CUDA HW)：展开后会看到一栏叫 Kernels，蓝色的小方块就是 Kernel 执行时间。
+
+内存行 (Memcpy)：展开后会有 Memory 栏，通常分为 HtoD（绿色）和 DtoH（紫色）。
+
+技巧：将鼠标悬停在这些小色块上，会自动弹出 Tooltip，显示 Duration（持续时间）。
+
+💡 性能分析进阶提示
+在你的矩阵加法程序中，你通常会发现：
+
+DMA (H2D/DtoH) 的时间往往远大于 Kernel 执行时间。 * 启示：这是 CUDA 编程中最经典的“IO 瓶颈”。
+如果你的计算量太小（比如矩阵规模 N 只有 1024），数据的搬运开销会完全掩盖 GPU 的计算优势。
+
+你想知道如何通过增加矩阵规模或使用异步流（Streams）来优化这些拷贝时间吗？
