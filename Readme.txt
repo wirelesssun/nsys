@@ -70,3 +70,31 @@ cmake --version
 
 cmake version 3.22.1
 CMake suite maintained and supported by Kitware (kitware.com/cmake).
+
+
+Gemini said
+既然你的系统是 Ubuntu 22.04 LTS，安装不带 GUI 的 Nsight Systems CLI（命令行版本）最标准的方法是通过 NVIDIA 官方的 apt 仓库。
+
+请按照以下步骤精准操作：
+# 1. 下载并安装 22.04 专用的仓库配置包
+wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb
+sudo dpkg -i cuda-keyring_1.1-1_all.deb
+
+# 3. 必须运行一次更新，让系统看到 NVIDIA 仓库里的包
+sudo apt update
+2. 安装 Nsight Systems CLI
+针对服务器端，我们只需要 nsight-systems-cli 这个包。它不包含任何图形界面依赖，非常精简。
+
+Bash
+# 安装命令行工具
+sudo apt install -y nsight-systems-cli
+如果上述命令仍然报错，请尝试使用包含版本号的安装命令（这是 NVIDIA 仓库的常见命名规则）：
+
+Bash
+sudo apt install -y cuda-nsight-systems-12-8
+3. 验证安装
+安装完成后，通过查看版本号来确认：
+
+Bash
+nsys --version
+如果返回类似 NVIDIA Nsight Systems Command Line Interface v2024.x.x，说明安装成功。
