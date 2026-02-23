@@ -1,5 +1,5 @@
-ubuntu@VM-0-13-ubuntu:~$ nvidia-smi       
-Sun Feb 15 21:13:40 2026       
+ubuntu@VM-0-2-ubuntu:~$ nvidia-smi 
+Mon Feb 23 19:01:01 2026       
 +-----------------------------------------------------------------------------------------+
 | NVIDIA-SMI 570.158.01             Driver Version: 570.158.01     CUDA Version: 12.8     |
 |-----------------------------------------+------------------------+----------------------+
@@ -8,7 +8,7 @@ Sun Feb 15 21:13:40 2026
 |                                         |                        |               MIG M. |
 |=========================================+========================+======================|
 |   0  Tesla T4                       On  |   00000000:00:08.0 Off |                  Off |
-| N/A   54C    P8             16W /   70W |       0MiB /  16384MiB |      0%      Default |
+| N/A   31C    P8              8W /   70W |       0MiB /  16384MiB |      0%      Default |
 |                                         |                        |                  N/A |
 +-----------------------------------------+------------------------+----------------------+
                                                                                          
@@ -98,3 +98,11 @@ sudo apt install -y cuda-nsight-systems-12-8
 Bash
 nsys --version
 如果返回类似 NVIDIA Nsight Systems Command Line Interface v2024.x.x，说明安装成功。
+
+ubuntu@VM-0-9-ubuntu:~$ nsys --version
+NVIDIA Nsight Systems version 2024.6.2.225-246235244400v0
+ubuntu@VM-0-9-ubuntu:~$ g++ --version
+g++ (Ubuntu 11.4.0-1ubuntu1~22.04.2) 11.4.0
+Copyright (C) 2021 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
