@@ -1,0 +1,1 @@
+/usr/bin/g++ -g CMakeFiles/sort_app.dir/src/bubble_sort.cpp.o CMakeFiles/sort_app.dir/src/quick_sort.cpp.o CMakeFiles/sort_app.dir/tests/test.cpp.o -o sort_app 

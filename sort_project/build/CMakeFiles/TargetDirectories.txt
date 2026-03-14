@@ -1,0 +1,3 @@
+/home/ubuntu/sort_project/build/CMakeFiles/sort_app.dir
+/home/ubuntu/sort_project/build/CMakeFiles/edit_cache.dir
+/home/ubuntu/sort_project/build/CMakeFiles/rebuild_cache.dir

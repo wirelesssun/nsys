@@ -1,0 +1,61 @@
+sudo apt update
+sudo apt-get install cmake make gcc g++
+sudo apt update
+sudo apt install gdb
+sudo apt update
+sudo apt install tree
+在 Ubuntu 22.04 远程环境下，
+提示 /usr/bin/gdb 路径无效通常有两个原因：
+
+一是服务器上未安装 GDB，二是 GDB 的实际安装路径不同。
+
+请按照以下步骤进行排查和修复：
+
+步骤 1：确认是否安装了 GDB
+在 VS Code 的集成终端（连接到远程服务器的那个）中输入以下命令：
+
+Bash
+gdb --version
+如果提示 command not found：说明服务器没装调试器。请执行步骤 2。
+
+如果显示了版本号：说明已安装，请执行步骤 3 获取正确路径。
+
+步骤 2：安装 GDB（如果未安装）
+在终端执行以下命令进行安装：
+
+Bash
+sudo apt update
+sudo apt install gdb
+步骤 3：获取 GDB 的真实路径
+即使安装了，路径也可能不在 /usr/bin/gdb。请在终端输入：
+
+Bash
+which gdb
+返回结果示例：
+
+/usr/bin/gdb (这是标准路径)
+
+/usr/local/bin/gdb (如果是手动编译安装的路径)
+
+/bin/gdb
+
+ubuntu@VM-16-16-ubuntu:~/sort_project$ tree -L 2                                                            
+.
+├── build
+│   ├── CMakeCache.txt
+│   ├── CMakeFiles
+│   ├── cmake_install.cmake
+│   ├── compile_commands.json
+│   ├── Makefile
+│   └── sort_app
+├── CMakeLists.txt
+├── include
+│   └── sort_algorithms.h
+├── readme
+├── src
+│   ├── bubble_sort.cpp
+│   └── quick_sort.cpp
+└── tests
+    └── test.cpp
+
+5 directories, 11 files

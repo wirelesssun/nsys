@@ -1,0 +1,17 @@
+[
+{
+  "directory": "/home/ubuntu/sort_project/build",
+  "command": "/usr/bin/g++  -I/home/ubuntu/sort_project/include -g -std=gnu++17 -o CMakeFiles/sort_app.dir/src/bubble_sort.cpp.o -c /home/ubuntu/sort_project/src/bubble_sort.cpp",
+  "file": "/home/ubuntu/sort_project/src/bubble_sort.cpp"
+},
+{
+  "directory": "/home/ubuntu/sort_project/build",
+  "command": "/usr/bin/g++  -I/home/ubuntu/sort_project/include -g -std=gnu++17 -o CMakeFiles/sort_app.dir/src/quick_sort.cpp.o -c /home/ubuntu/sort_project/src/quick_sort.cpp",
+  "file": "/home/ubuntu/sort_project/src/quick_sort.cpp"
+},
+{
+  "directory": "/home/ubuntu/sort_project/build",
+  "command": "/usr/bin/g++  -I/home/ubuntu/sort_project/include -g -std=gnu++17 -o CMakeFiles/sort_app.dir/tests/test.cpp.o -c /home/ubuntu/sort_project/tests/test.cpp",
+  "file": "/home/ubuntu/sort_project/tests/test.cpp"
+}
+]
