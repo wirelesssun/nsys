@@ -4,6 +4,8 @@ sudo apt update
 sudo apt install gdb
 sudo apt update
 sudo apt install tree
+sudo apt update
+sudo apt install htop
 在 Ubuntu 22.04 远程环境下，
 提示 /usr/bin/gdb 路径无效通常有两个原因：
 
