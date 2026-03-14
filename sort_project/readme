@@ -129,11 +129,19 @@ Host my_server
 如果配置后仍然需要密码，通常是服务器端权限过大导致 SSH 出于安全原因拒绝读取密钥：
 
 用户家目录 (/home/username) 权限不能超过 755。
-
 .ssh 目录 权限必须是 700。
-
 authorized_keys 文件 权限必须是 600。
 
 由于你正在使用 VS Code 远程连接 Ubuntu，完成免密配置后，
 VS Code 的 "Remote-SSH" 插件会自动识别这些配置，之后你只需点击一下即可秒连。
 后续，再需要Google Gemini机器人来演示如何在 VS Code 配置文件中指定多个不同的开发服务器；
+
+1. 配置user.name  和 user.email(global为全局配置)
+   git config --global user.name  "your_email"
+   git config --global user.email  "your_email@example.com"
+
+2. 设置SSH Key
+   sh-keygen -t rsa -C "your_email@example.com"
+
+2026.03.14 14:56
+Many Thanks.......
