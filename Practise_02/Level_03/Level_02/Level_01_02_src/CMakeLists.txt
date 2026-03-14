@@ -1,0 +1,1 @@
+add_library(Level_01_02 SHARED ${CMAKE_CURRENT_SOURCE_DIR}/Level_01_02.cpp)

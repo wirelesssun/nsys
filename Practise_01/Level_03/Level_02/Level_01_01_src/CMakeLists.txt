@@ -1,0 +1,1 @@
+add_library(Level_01_01 STATIC ${CMAKE_CURRENT_SOURCE_DIR}/Level_01_01.cpp)

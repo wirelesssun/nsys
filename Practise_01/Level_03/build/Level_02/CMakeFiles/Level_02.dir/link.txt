@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC -shared -Wl,-soname,libLevel_02.so -o libLevel_02.so CMakeFiles/Level_02.dir/Level_02.cpp.o  Level_01_01_src/libLevel_01_01.a Level_01_02_src/libLevel_01_02.a 
