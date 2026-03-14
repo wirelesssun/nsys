@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON) 
 
 # 全局设置所有目标生成位置无关代码
-set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+# set(CMAKE_POSITION_INDEPENDENT_CODE ON)#先生成动态库，再被静态库链接，因此这个设置可选使能；
 
 add_subdirectory(Level_02)
 add_executable(Level_03 ${CMAKE_CURRENT_SOURCE_DIR}/Level_03.cpp)
