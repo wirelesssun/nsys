@@ -59,3 +59,81 @@ ubuntu@VM-16-16-ubuntu:~/sort_project$ tree -L 2
     └── test.cpp
 
 5 directories, 11 files
+
+在 Ubuntu 远程服务器上实现**免密码登录（SSH Key-based Authentication）**是提高开发效率和系统安全性的标准做法。其原理是使用一对密钥：**公钥（Public Key）**留在服务器上，**私钥（Private Key）**保存在你本地电脑。
+
+以下是完备且详细的步骤：
+
+第一步：在本地电脑生成密钥对
+首先检查你的本地电脑（Windows 或 macOS/Linux）是否已经有密钥。在终端输入：
+ls ~/.ssh/id_rsa.pub
+
+如果没有该文件，请运行以下命令生成：
+
+Bash
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+提示位置：直接按 Enter 即可（默认保存在 ~/.ssh/id_rsa）。
+
+提示密码 (passphrase)：直接按 Enter 留空，即可实现真正的“免密”。
+
+第二步：将公钥发送到远程服务器
+你需要把本地生成的 id_rsa.pub 的内容添加到服务器的 ~/.ssh/authorized_keys 文件中。
+
+方法 A：使用快捷命令（推荐 Linux/macOS 用户）
+Bash
+ssh-copy-id -i ~/.ssh/id_rsa.pub username@server_ip
+输入一次服务器密码后，公钥会自动安装完成。
+
+方法 B：手动操作（Windows 用户常用）
+查看并复制本地公钥内容：
+cat ~/.ssh/id_rsa.pub
+
+登录服务器，执行以下命令：
+
+Bash
+mkdir -p ~/.ssh
+chmod 700 ~/.ssh
+# 将复制的内容粘贴到下面命令的引号中
+echo "粘贴你的公钥内容" >> ~/.ssh/authorized_keys
+chmod 600 ~/.ssh/authorized_keys
+第三步：配置服务器 SSH 服务（确保功能开启）
+通常 Ubuntu 默认支持密钥登录，但为了保险，请检查服务器配置：
+
+编辑配置文件：sudo nano /etc/ssh/sshd_config
+
+确认以下两项设置正确（去掉前面的 #）：
+
+Plaintext
+PubkeyAuthentication yes
+AuthorizedKeysFile .ssh/authorized_keys
+（可选）如果你想完全禁用密码登录（提高安全性）：
+PasswordAuthentication no
+
+重启服务：sudo systemctl restart ssh
+
+第四步：在本地 VS Code 中简化登录 (Config 文件)
+为了不用每次输入 ssh username@ip，你可以配置本地的 SSH Config。
+
+在本地终端输入：nano ~/.ssh/config（Windows 为 C:\Users\用户名\.ssh\config）
+
+添加以下内容：
+
+Plaintext
+Host my_server
+    HostName 192.168.x.x  # 替换为服务器IP
+    User root             # 替换为你的用户名
+    IdentityFile ~/.ssh/id_rsa
+现在，你只需要在终端输入 ssh my_server 即可免密登录。
+
+常见问题排查（权限陷阱）
+如果配置后仍然需要密码，通常是服务器端权限过大导致 SSH 出于安全原因拒绝读取密钥：
+
+用户家目录 (/home/username) 权限不能超过 755。
+
+.ssh 目录 权限必须是 700。
+
+authorized_keys 文件 权限必须是 600。
+
+由于你正在使用 VS Code 远程连接 Ubuntu，完成免密配置后，
+VS Code 的 "Remote-SSH" 插件会自动识别这些配置，之后你只需点击一下即可秒连。
+后续，再需要Google Gemini机器人来演示如何在 VS Code 配置文件中指定多个不同的开发服务器；
