@@ -1,0 +1,2 @@
+/usr/bin/ar qc libLevel_01_02.a CMakeFiles/Level_01_02.dir/Level_01_02.cpp.o
+/usr/bin/ranlib libLevel_01_02.a

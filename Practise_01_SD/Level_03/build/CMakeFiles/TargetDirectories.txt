@@ -1,0 +1,12 @@
+/home/ubuntu/nsys/Practise_01_SD/Level_03/build/CMakeFiles/Level_03.dir
+/home/ubuntu/nsys/Practise_01_SD/Level_03/build/CMakeFiles/edit_cache.dir
+/home/ubuntu/nsys/Practise_01_SD/Level_03/build/CMakeFiles/rebuild_cache.dir
+/home/ubuntu/nsys/Practise_01_SD/Level_03/build/Level_02/CMakeFiles/Level_02.dir
+/home/ubuntu/nsys/Practise_01_SD/Level_03/build/Level_02/CMakeFiles/edit_cache.dir
+/home/ubuntu/nsys/Practise_01_SD/Level_03/build/Level_02/CMakeFiles/rebuild_cache.dir
+/home/ubuntu/nsys/Practise_01_SD/Level_03/build/Level_02/Level_01_01_src/CMakeFiles/Level_01_01.dir
+/home/ubuntu/nsys/Practise_01_SD/Level_03/build/Level_02/Level_01_01_src/CMakeFiles/edit_cache.dir
+/home/ubuntu/nsys/Practise_01_SD/Level_03/build/Level_02/Level_01_01_src/CMakeFiles/rebuild_cache.dir
+/home/ubuntu/nsys/Practise_01_SD/Level_03/build/Level_02/Level_01_02_src/CMakeFiles/Level_01_02.dir
+/home/ubuntu/nsys/Practise_01_SD/Level_03/build/Level_02/Level_01_02_src/CMakeFiles/edit_cache.dir
+/home/ubuntu/nsys/Practise_01_SD/Level_03/build/Level_02/Level_01_02_src/CMakeFiles/rebuild_cache.dir
