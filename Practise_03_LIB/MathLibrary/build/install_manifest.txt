@@ -1,0 +1,4 @@
+/home/ubuntu/Practise_03_LIB/MathLibrary/dist/lib/libTestAdd.a
+/home/ubuntu/Practise_03_LIB/MathLibrary/dist/include/TestAdd.h
+/home/ubuntu/Practise_03_LIB/MathLibrary/dist/lib/cmake/TestAdd/TestAddConfig.cmake
+/home/ubuntu/Practise_03_LIB/MathLibrary/dist/lib/cmake/TestAdd/TestAddConfig-noconfig.cmake

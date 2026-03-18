@@ -1,0 +1,7 @@
+/home/ubuntu/Practise_03_LIB/MathLibrary/build/CMakeFiles/TestAdd.dir
+/home/ubuntu/Practise_03_LIB/MathLibrary/build/CMakeFiles/edit_cache.dir
+/home/ubuntu/Practise_03_LIB/MathLibrary/build/CMakeFiles/rebuild_cache.dir
+/home/ubuntu/Practise_03_LIB/MathLibrary/build/CMakeFiles/list_install_components.dir
+/home/ubuntu/Practise_03_LIB/MathLibrary/build/CMakeFiles/install.dir
+/home/ubuntu/Practise_03_LIB/MathLibrary/build/CMakeFiles/install/local.dir
+/home/ubuntu/Practise_03_LIB/MathLibrary/build/CMakeFiles/install/strip.dir

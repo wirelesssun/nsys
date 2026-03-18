@@ -1,0 +1,3 @@
+/home/ubuntu/Practise_03_LIB/AppProject/build/CMakeFiles/MyApp.dir
+/home/ubuntu/Practise_03_LIB/AppProject/build/CMakeFiles/edit_cache.dir
+/home/ubuntu/Practise_03_LIB/AppProject/build/CMakeFiles/rebuild_cache.dir
