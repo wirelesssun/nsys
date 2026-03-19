@@ -7,7 +7,7 @@ Bash
 cd MathLibrary
 mkdir build && cd build
 # 设置安装目录为本地的 'dist' 文件夹，避免污染系统目录
-cmake .. -DCMAKE_INSTALL_PREFIX=../dist
+cmake .. -DCMAKE_INSTALL_PREFIX=$(pwd)/../dist
 make install
 
 第二步：编译工程 B 并调用
@@ -15,6 +15,6 @@ Bash
 cd ../../AppProject
 mkdir build && cd build
 # 告诉 CMake 到工程 A 的安装目录里找配置文件
-cmake .. -DTestAdd_DIR=../MathLibrary/dist/lib/cmake/TestAdd
+cmake .. -DTestAdd_DIR=$(pwd)/../../MathLibrary/dist/lib/cmake/TestAdd
 make
 ./MyApp
