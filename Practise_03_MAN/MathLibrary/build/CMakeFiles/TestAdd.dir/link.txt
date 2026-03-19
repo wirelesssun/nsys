@@ -1,0 +1,2 @@
+/usr/bin/ar qc libTestAdd.a CMakeFiles/TestAdd.dir/src/TestAdd.cpp.o
+/usr/bin/ranlib libTestAdd.a

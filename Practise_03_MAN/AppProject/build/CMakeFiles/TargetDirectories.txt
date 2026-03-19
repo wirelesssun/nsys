@@ -1,0 +1,3 @@
+/home/ubuntu/nsys/Practise_03_MAN/AppProject/build/CMakeFiles/MyApp.dir
+/home/ubuntu/nsys/Practise_03_MAN/AppProject/build/CMakeFiles/edit_cache.dir
+/home/ubuntu/nsys/Practise_03_MAN/AppProject/build/CMakeFiles/rebuild_cache.dir
