@@ -1,0 +1,2 @@
+/usr/bin/ar qc libMathOperationsMul.a CMakeFiles/MathOperationsMul.dir/src/multiplication.cpp.o
+/usr/bin/ranlib libMathOperationsMul.a

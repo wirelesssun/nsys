@@ -1,0 +1,21 @@
+# 1. Multiple Libraries;
+# 2. MACRO;
+# 3. FIND Multiple LIB_VERSIONS;
+
+第一步：编译并安装工程 MathProjectA
+Bash
+cd MathProjectA
+mkdir build && cd build
+cmake .. -DCMAKE_INSTALL_PREFIX=$(pwd)/../../Release/V1.1.3
+make
+make install
+
+第二步：编译工程 AppProjectB
+Bash
+cd AppProjectB
+mkdir build && cd build
+cmake .. -DMathOperations_DIR=$(pwd)/../../Release/V1.1.3/lib/cmake/MathOperations
+#cmake .. -DCMAKE_INSTALL_PREFIX=$(pwd)/../../Release/V1.1.2/lib/cmake/MathOperations
+
+make
+./CalculatorApp

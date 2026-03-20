@@ -1,0 +1,2 @@
+/usr/bin/ar qc libMathOperationsAdd.a CMakeFiles/MathOperationsAdd.dir/src/addition.cpp.o
+/usr/bin/ranlib libMathOperationsAdd.a
