@@ -13,7 +13,6 @@ add_library(MathOperations STATIC
     src/subtraction.cpp
     src/multiplication.cpp
     src/division.cpp
-    include/MathOps.h
 )
 
 # ---- 3. 配置头文件搜索路径 (关键：BUILD vs INSTALL) ----
