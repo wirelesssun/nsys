@@ -1,0 +1,2 @@
+/usr/bin/ar qc libMathOperationsDiv.a CMakeFiles/MathOperationsDiv.dir/src/division.cpp.o
+/usr/bin/ranlib libMathOperationsDiv.a

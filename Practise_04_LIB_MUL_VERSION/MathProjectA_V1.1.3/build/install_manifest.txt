@@ -1,0 +1,8 @@
+/home/ubuntu/nsys/Practise_04_LIB_MUL_VERSION/Release/V1.1.3/lib/libMathOperationsAdd.a
+/home/ubuntu/nsys/Practise_04_LIB_MUL_VERSION/Release/V1.1.3/lib/libMathOperationsSub.a
+/home/ubuntu/nsys/Practise_04_LIB_MUL_VERSION/Release/V1.1.3/lib/libMathOperationsMul.a
+/home/ubuntu/nsys/Practise_04_LIB_MUL_VERSION/Release/V1.1.3/lib/libMathOperationsDiv.a
+/home/ubuntu/nsys/Practise_04_LIB_MUL_VERSION/Release/V1.1.3/include/MathOps.h
+/home/ubuntu/nsys/Practise_04_LIB_MUL_VERSION/Release/V1.1.3/lib/cmake/MathOperations/MathOperationsConfig.cmake
+/home/ubuntu/nsys/Practise_04_LIB_MUL_VERSION/Release/V1.1.3/lib/cmake/MathOperations/MathOperationsConfig-noconfig.cmake
+/home/ubuntu/nsys/Practise_04_LIB_MUL_VERSION/Release/V1.1.3/lib/cmake/MathOperations/MathOperationsConfigVersion.cmake

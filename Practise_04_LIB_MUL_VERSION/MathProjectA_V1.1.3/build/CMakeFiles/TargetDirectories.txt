@@ -1,0 +1,10 @@
+/home/ubuntu/nsys/Practise_04_LIB_MUL_VERSION/MathProjectA_V1.1.3/build/CMakeFiles/MathOperationsAdd.dir
+/home/ubuntu/nsys/Practise_04_LIB_MUL_VERSION/MathProjectA_V1.1.3/build/CMakeFiles/MathOperationsSub.dir
+/home/ubuntu/nsys/Practise_04_LIB_MUL_VERSION/MathProjectA_V1.1.3/build/CMakeFiles/MathOperationsMul.dir
+/home/ubuntu/nsys/Practise_04_LIB_MUL_VERSION/MathProjectA_V1.1.3/build/CMakeFiles/MathOperationsDiv.dir
+/home/ubuntu/nsys/Practise_04_LIB_MUL_VERSION/MathProjectA_V1.1.3/build/CMakeFiles/edit_cache.dir
+/home/ubuntu/nsys/Practise_04_LIB_MUL_VERSION/MathProjectA_V1.1.3/build/CMakeFiles/rebuild_cache.dir
+/home/ubuntu/nsys/Practise_04_LIB_MUL_VERSION/MathProjectA_V1.1.3/build/CMakeFiles/list_install_components.dir
+/home/ubuntu/nsys/Practise_04_LIB_MUL_VERSION/MathProjectA_V1.1.3/build/CMakeFiles/install.dir
+/home/ubuntu/nsys/Practise_04_LIB_MUL_VERSION/MathProjectA_V1.1.3/build/CMakeFiles/install/local.dir
+/home/ubuntu/nsys/Practise_04_LIB_MUL_VERSION/MathProjectA_V1.1.3/build/CMakeFiles/install/strip.dir

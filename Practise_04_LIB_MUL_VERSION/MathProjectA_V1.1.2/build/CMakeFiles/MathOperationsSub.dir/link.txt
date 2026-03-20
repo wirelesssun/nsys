@@ -1,0 +1,2 @@
+/usr/bin/ar qc libMathOperationsSub.a CMakeFiles/MathOperationsSub.dir/src/subtraction.cpp.o
+/usr/bin/ranlib libMathOperationsSub.a
