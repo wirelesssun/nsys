@@ -1,3 +1,11 @@
 # 1. Multiple Libraries;
 # 2. MACRO;
-# 3. FIND LIB_VERSION;
+# 3. FIND Multiple LIB_VERSIONS;
+
+第一步：编译并安装工程
+Bash
+cd MathProjectA
+mkdir build && cd build
+cmake .. -DCMAKE_INSTALL_PREFIX=$(pwd)/../dist
+make
+make install

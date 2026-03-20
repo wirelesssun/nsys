@@ -1,0 +1,5 @@
+/home/ubuntu/nsys/Practise_04_LIB_MUL/MathProjectA/dist/lib/libMathOperations.a
+/home/ubuntu/nsys/Practise_04_LIB_MUL/MathProjectA/dist/include/MathOps.h
+/home/ubuntu/nsys/Practise_04_LIB_MUL/MathProjectA/dist/lib/cmake/MathOperations/MathOperationsConfig.cmake
+/home/ubuntu/nsys/Practise_04_LIB_MUL/MathProjectA/dist/lib/cmake/MathOperations/MathOperationsConfig-noconfig.cmake
+/home/ubuntu/nsys/Practise_04_LIB_MUL/MathProjectA/dist/lib/cmake/MathOperations/MathOperationsConfigVersion.cmake
