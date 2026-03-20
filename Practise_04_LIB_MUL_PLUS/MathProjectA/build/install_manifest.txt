@@ -1,0 +1,8 @@
+/home/ubuntu/nsys/Practise_04_LIB_MUL_PLUS/MathProjectA/dist/lib/libMathOperationsAdd.a
+/home/ubuntu/nsys/Practise_04_LIB_MUL_PLUS/MathProjectA/dist/lib/libMathOperationsSub.a
+/home/ubuntu/nsys/Practise_04_LIB_MUL_PLUS/MathProjectA/dist/lib/libMathOperationsMul.a
+/home/ubuntu/nsys/Practise_04_LIB_MUL_PLUS/MathProjectA/dist/lib/libMathOperationsDiv.a
+/home/ubuntu/nsys/Practise_04_LIB_MUL_PLUS/MathProjectA/dist/include/MathOps.h
+/home/ubuntu/nsys/Practise_04_LIB_MUL_PLUS/MathProjectA/dist/lib/cmake/MathOperations/MathOperationsConfig.cmake
+/home/ubuntu/nsys/Practise_04_LIB_MUL_PLUS/MathProjectA/dist/lib/cmake/MathOperations/MathOperationsConfig-noconfig.cmake
+/home/ubuntu/nsys/Practise_04_LIB_MUL_PLUS/MathProjectA/dist/lib/cmake/MathOperations/MathOperationsConfigVersion.cmake
