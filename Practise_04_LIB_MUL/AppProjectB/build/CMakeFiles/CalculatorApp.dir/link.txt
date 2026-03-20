@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/CalculatorApp.dir/src/main.cpp.o -o CalculatorApp  /home/ubuntu/nsys/Practise_04_LIB_MUL/MathProjectA/dist/lib/libMathOperations.a 
