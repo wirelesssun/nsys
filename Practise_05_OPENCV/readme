@@ -1,0 +1,14 @@
+环境准备与构建
+可以通过以下命令快速安装 OpenCV 的开发环境：
+
+Bash
+# Ubuntu/Debian 系统
+sudo apt-get update
+sudo apt-get install libopencv-dev
+编译步骤：
+
+Bash
+mkdir build && cd build
+cmake ..
+make
+./ImageProcessor
