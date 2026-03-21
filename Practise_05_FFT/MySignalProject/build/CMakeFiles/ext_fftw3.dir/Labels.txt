@@ -1,0 +1,13 @@
+# Target labels
+ ext_fftw3
+# Source files and their labels
+/home/ubuntu/nsys/Practise_05_FFT/MySignalProject/build/CMakeFiles/ext_fftw3
+/home/ubuntu/nsys/Practise_05_FFT/MySignalProject/build/CMakeFiles/ext_fftw3.rule
+/home/ubuntu/nsys/Practise_05_FFT/MySignalProject/build/CMakeFiles/ext_fftw3-complete.rule
+/home/ubuntu/nsys/Practise_05_FFT/MySignalProject/build/fftw3_build/src/ext_fftw3-stamp/ext_fftw3-build.rule
+/home/ubuntu/nsys/Practise_05_FFT/MySignalProject/build/fftw3_build/src/ext_fftw3-stamp/ext_fftw3-configure.rule
+/home/ubuntu/nsys/Practise_05_FFT/MySignalProject/build/fftw3_build/src/ext_fftw3-stamp/ext_fftw3-download.rule
+/home/ubuntu/nsys/Practise_05_FFT/MySignalProject/build/fftw3_build/src/ext_fftw3-stamp/ext_fftw3-install.rule
+/home/ubuntu/nsys/Practise_05_FFT/MySignalProject/build/fftw3_build/src/ext_fftw3-stamp/ext_fftw3-mkdir.rule
+/home/ubuntu/nsys/Practise_05_FFT/MySignalProject/build/fftw3_build/src/ext_fftw3-stamp/ext_fftw3-patch.rule
+/home/ubuntu/nsys/Practise_05_FFT/MySignalProject/build/fftw3_build/src/ext_fftw3-stamp/ext_fftw3-update.rule

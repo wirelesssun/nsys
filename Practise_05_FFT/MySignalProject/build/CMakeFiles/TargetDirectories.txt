@@ -1,0 +1,4 @@
+/home/ubuntu/nsys/Practise_05_FFT/MySignalProject/build/CMakeFiles/ext_fftw3.dir
+/home/ubuntu/nsys/Practise_05_FFT/MySignalProject/build/CMakeFiles/MySignalProject.dir
+/home/ubuntu/nsys/Practise_05_FFT/MySignalProject/build/CMakeFiles/edit_cache.dir
+/home/ubuntu/nsys/Practise_05_FFT/MySignalProject/build/CMakeFiles/rebuild_cache.dir

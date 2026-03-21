@@ -1,0 +1,1 @@
+cmd='<SOURCE_DIR>/configure;--prefix=/home/ubuntu/nsys/Practise_05_FFT/MySignalProject/build/extern/fftw3;--enable-shared=no;--enable-static=yes;--enable-threads'

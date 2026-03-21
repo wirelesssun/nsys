@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/home/ubuntu/nsys/Practise_05_FFT/MySignalProject/build/CMakeFiles/ext_fftw3"
+		},
+		{
+			"file" : "/home/ubuntu/nsys/Practise_05_FFT/MySignalProject/build/CMakeFiles/ext_fftw3.rule"
+		},
+		{
+			"file" : "/home/ubuntu/nsys/Practise_05_FFT/MySignalProject/build/CMakeFiles/ext_fftw3-complete.rule"
+		},
+		{
+			"file" : "/home/ubuntu/nsys/Practise_05_FFT/MySignalProject/build/fftw3_build/src/ext_fftw3-stamp/ext_fftw3-build.rule"
+		},
+		{
+			"file" : "/home/ubuntu/nsys/Practise_05_FFT/MySignalProject/build/fftw3_build/src/ext_fftw3-stamp/ext_fftw3-configure.rule"
+		},
+		{
+			"file" : "/home/ubuntu/nsys/Practise_05_FFT/MySignalProject/build/fftw3_build/src/ext_fftw3-stamp/ext_fftw3-download.rule"
+		},
+		{
+			"file" : "/home/ubuntu/nsys/Practise_05_FFT/MySignalProject/build/fftw3_build/src/ext_fftw3-stamp/ext_fftw3-install.rule"
+		},
+		{
+			"file" : "/home/ubuntu/nsys/Practise_05_FFT/MySignalProject/build/fftw3_build/src/ext_fftw3-stamp/ext_fftw3-mkdir.rule"
+		},
+		{
+			"file" : "/home/ubuntu/nsys/Practise_05_FFT/MySignalProject/build/fftw3_build/src/ext_fftw3-stamp/ext_fftw3-patch.rule"
+		},
+		{
+			"file" : "/home/ubuntu/nsys/Practise_05_FFT/MySignalProject/build/fftw3_build/src/ext_fftw3-stamp/ext_fftw3-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"ext_fftw3"
+		],
+		"name" : "ext_fftw3"
+	}
+}
