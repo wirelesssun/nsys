@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/home/ubuntu/nsys/Practise_05_OPENSSL/AES_Validator/build/CMakeFiles/ext_openssl"
+		},
+		{
+			"file" : "/home/ubuntu/nsys/Practise_05_OPENSSL/AES_Validator/build/CMakeFiles/ext_openssl.rule"
+		},
+		{
+			"file" : "/home/ubuntu/nsys/Practise_05_OPENSSL/AES_Validator/build/CMakeFiles/ext_openssl-complete.rule"
+		},
+		{
+			"file" : "/home/ubuntu/nsys/Practise_05_OPENSSL/AES_Validator/build/openssl_build/src/ext_openssl-stamp/ext_openssl-build.rule"
+		},
+		{
+			"file" : "/home/ubuntu/nsys/Practise_05_OPENSSL/AES_Validator/build/openssl_build/src/ext_openssl-stamp/ext_openssl-configure.rule"
+		},
+		{
+			"file" : "/home/ubuntu/nsys/Practise_05_OPENSSL/AES_Validator/build/openssl_build/src/ext_openssl-stamp/ext_openssl-download.rule"
+		},
+		{
+			"file" : "/home/ubuntu/nsys/Practise_05_OPENSSL/AES_Validator/build/openssl_build/src/ext_openssl-stamp/ext_openssl-install.rule"
+		},
+		{
+			"file" : "/home/ubuntu/nsys/Practise_05_OPENSSL/AES_Validator/build/openssl_build/src/ext_openssl-stamp/ext_openssl-mkdir.rule"
+		},
+		{
+			"file" : "/home/ubuntu/nsys/Practise_05_OPENSSL/AES_Validator/build/openssl_build/src/ext_openssl-stamp/ext_openssl-patch.rule"
+		},
+		{
+			"file" : "/home/ubuntu/nsys/Practise_05_OPENSSL/AES_Validator/build/openssl_build/src/ext_openssl-stamp/ext_openssl-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"ext_openssl"
+		],
+		"name" : "ext_openssl"
+	}
+}

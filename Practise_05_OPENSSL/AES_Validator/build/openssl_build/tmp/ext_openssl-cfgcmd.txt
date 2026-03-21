@@ -1,0 +1,1 @@
+cmd='<SOURCE_DIR>/config;--prefix=/home/ubuntu/nsys/Practise_05_OPENSSL/AES_Validator/build/extern/openssl;--openssldir=/home/ubuntu/nsys/Practise_05_OPENSSL/AES_Validator/build/extern/openssl;no-shared;no-tests'
