@@ -1,0 +1,64 @@
+Root Directory
+git clone https://github.com/opencv/opencv.git
+mv opencv opencv_source
+
+1. 准备工作：安装依赖
+在开始编译之前，确保你的 Linux 系统已安装必要的构建工具和图像解码库：
+
+Bash
+sudo apt-get update
+sudo apt-get install -y build-essential cmake git pkg-config \
+    libjpeg-dev libtiff-dev libavcodec-dev libavformat-dev \
+    libswscale-dev libv4l-dev libxvidcore-dev libx264-dev \
+    libgtk-3-dev libatlas-base-dev gfortran
+2. 编译与安装 OpenCV 的详细命令
+请在你的 ImageProcessorProject 根目录下执行以下步骤：
+
+第一步：进入构建目录
+Bash
+# 假设你已经将源码克隆到了 opencv_source 文件夹
+cd opencv_build
+第二步：配置 CMake 生成器
+这里使用 -D CMAKE_INSTALL_PREFIX 将安装路径指向项目内部的 opencv_install 文件夹 。
+
+Bash
+cmake -D CMAKE_BUILD_TYPE=Release \
+      -D CMAKE_INSTALL_PREFIX=../opencv_install \
+      -D BUILD_opencv_python2=OFF \
+      -D BUILD_opencv_python3=OFF \
+      -D BUILD_EXAMPLES=OFF \
+      -D BUILD_TESTS=OFF \
+      -D BUILD_PERF_TESTS=OFF \
+      -D WITH_TBB=ON \
+      -D WITH_V4L=ON \
+      -D WITH_GTK=ON \
+      -D WITH_OPENGL=ON \
+      ../opencv_source
+第三步：执行编译
+利用多核并行编译以节省时间。
+
+Bash
+# 使用所有可用的 CPU 核心进行编译 
+make -j$(nproc)
+第四步：执行安装
+将编译好的库文件、头文件和配置文件拷贝到 opencv_install 目录 。
+
+Bash
+make install
+3. 验证与链接你的项目
+安装完成后，你的 MyProject/CMakeLists.txt 需要通过指定 OpenCV_DIR 来识别这个特定的安装版本 ：
+
+CMake
+# 在 MyProject/CMakeLists.txt 中添加 
+set(OpenCV_DIR "${CMAKE_SOURCE_DIR}/../opencv_install/lib/cmake/opencv4")
+find_package(OpenCV REQUIRED)
+关键点提示
+
+nproc: 该命令会自动获取你当前机器（如你的 Senior Electronic Information Engineer 级别工作站）的 CPU 核心数，从而实现最快编译速度 。
+
+Release 模式: 确保使用 -D CMAKE_BUILD_TYPE=Release，否则 OpenCV 的图像处理性能会大幅下降。
+
+
+OpenCV 4.x 路径: 注意在 OpenCV 4 及以上版本中，配置文件通常位于 lib/cmake/opencv4 目录下 。
+
+cmake .. -DOpenCV_DIR=$(pwd)/../../opencv_install/lib/cmake/opencv4
