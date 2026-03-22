@@ -3,7 +3,9 @@ include(ExternalProject)
 # 定义安装路径
 set(OPENSSL_INSTALL_DIR ${CMAKE_BINARY_DIR}/extern/openssl)
 set(OPENSSL_INCLUDE_DIR ${OPENSSL_INSTALL_DIR}/include)
-set(OPENSSL_CRYPTO_LIB  ${OPENSSL_INSTALL_DIR}/lib64/libcrypto.a)
+# 注意：根据系统架构 ARM/X86 和 OpenSSL 版本，库文件可能位于 lib 或 lib64 目录
+set(OPENSSL_CRYPTO_LIB  ${OPENSSL_INSTALL_DIR}/lib/libcrypto.a) 
+# set(OPENSSL_CRYPTO_LIB  ${OPENSSL_INSTALL_DIR}/lib64/libcrypto.a)
 # 我很难理解的是，这个路径原本是：
 # set(OPENSSL_CRYPTO_LIB  ${OPENSSL_INSTALL_DIR}/lib/libcrypto.a)
 # 自动化构建 OpenSSL

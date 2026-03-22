@@ -11,7 +11,7 @@ message(STATUS "OpenCV Path: ${OpenCV_DIR}")
 # 使用 NO_DEFAULT_PATH 强制 CMake 忽略系统路径，本地搜索
 find_package(OpenCV 4.14.0 REQUIRED NO_DEFAULT_PATH)
 #find_package(OpenCV 4.13.0 REQUIRED NO_DEFAULT_PATH),Also would be OK.
-
+#find_package(OpenCV 4.12.0 REQUIRED NO_DEFAULT_PATH),Also would be OK.
 # 3. 添加执行文件
 add_executable(${PROJECT_NAME} src/main.cpp)
 
