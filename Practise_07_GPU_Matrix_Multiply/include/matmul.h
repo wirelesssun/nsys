@@ -4,7 +4,7 @@
 #include <iostream>
 #include <vector>
 
-const int N = 128;         // 矩阵大小
+const int N = 1024;        // 矩阵大小
 const int BLOCK_SIZE = 16; // 线程块大小 (16x16)
 
 // 方案一：纯 CPU 接口
