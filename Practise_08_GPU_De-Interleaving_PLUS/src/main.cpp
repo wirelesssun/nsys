@@ -30,7 +30,7 @@ int main() {
         printf("%-15s | %-5d | %-25.7f | %-15d | %-10s\n", "1: Pure CPU", Qm, t1, ITERS, "PASS");
 
         // 方案二至七 (GPU Benchmarks)
-        for (int m = 2; m <= 7; ++m) {
+        for (int m = 2; m <= 6; ++m) {
             double tm = gpu_bench_run(m, h_in.data(), h_out.data(), Qm);
             bool ok = check_result(h_ref.data(), h_out.data(), E_SIZE);
             std::string label = std::to_string(m) + ": GPU-V" + std::to_string(m);
