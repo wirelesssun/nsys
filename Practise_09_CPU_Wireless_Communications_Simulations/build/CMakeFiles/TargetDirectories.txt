@@ -1,0 +1,3 @@
+/home/ubuntu/nsys/Practise_09_CPU_Wireless_Communications_Simulations/build/CMakeFiles/ofdm_sim.dir
+/home/ubuntu/nsys/Practise_09_CPU_Wireless_Communications_Simulations/build/CMakeFiles/edit_cache.dir
+/home/ubuntu/nsys/Practise_09_CPU_Wireless_Communications_Simulations/build/CMakeFiles/rebuild_cache.dir

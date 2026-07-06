@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/ofdm_sim.dir/main.cpp.o -o ofdm_sim  -lfftw3 -lfftw3 -lm -lfftw3 -lm 

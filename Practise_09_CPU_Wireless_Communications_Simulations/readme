@@ -1,0 +1,35 @@
+编译与使用
+
+安装依赖（Ubuntu 22.04）：
+
+bash
+sudo apt update
+sudo apt install build-essential cmake libfftw3-dev
+构建：
+
+bash
+mkdir build && cd build
+cmake ..
+make
+运行示例：
+
+启用所有四种调制，扫描SNR -5~20dB，每个SNR每种调制发送1000个OFDM符号：
+
+bash
+./ofdm_sim -b 15
+仅启用BPSK和QPSK（bitmap=0b0011=3）：
+
+bash
+./ofdm_sim -b 3
+指定单个SNR为10dB，符号数2000，输出到my_ber.csv：
+
+bash
+./ofdm_sim -b 15 -s 10 -n 2000 -o my_ber.csv
+生成的CSV文件示例：
+
+text
+SNR_dB,BPSK,QPSK,2ASK,4ASK
+-5,0.1234,0.2345,0.1123,0.3456
+-4,0.0987,0.1987,0.0876,0.2876
+...
+对于未使能的调制，对应列值为-1。
